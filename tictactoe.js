@@ -87,14 +87,6 @@ function playGame () {
         return {score, round, winGame, winRound, finishGame};
     }();
 
-    let player1Name = window.prompt('Enter your Name:');
-    let player1XO = 'X';
-    let player2Name = window.prompt('Enter your Name:');
-    let player2XO = 'O';
-    let playerTurn = 0;
-
-   let player1 = createPlayer(player1Name, player1XO);
-   let player2 = createPlayer(player2Name, player2XO);
 
    /* while(!game.winGame) {
         playerTurn++;

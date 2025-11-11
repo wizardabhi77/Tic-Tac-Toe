@@ -1,0 +1,57 @@
+body {
+    margin: 0;
+    height: 100vh;
+    background-color: rgb(7, 1, 22);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bolder;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 100px;
+}
+
+.gameboard {
+    box-shadow: 10px 15px 8px rgb(182, 105, 118);
+    display: grid;
+    grid-template-columns: 150px 150px 150px;
+    grid-template-rows: 150px 150px 150px;
+    gap: 10x;
+    justify-content: center;
+}
+
+.tile{
+    border: 10px inset red;
+    background-color: pink;
+    height: 150px;
+    width: 150px;
+
+}
+
+.scoreboard {
+    border: 3px double blueviolet;
+    height: 500px;
+    width: 500px;
+    text-align: center;
+}
+
+.name {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    color: white;
+}
+
+.score {
+    display: flex;
+    color: aqua;
+}
+
+button {
+    width: 100px;
+    background-color: darkred;
+    color: white;
+    border-radius: 20px;
+    align-self: center;
+}
