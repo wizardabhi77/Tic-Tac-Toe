@@ -14,13 +14,41 @@ function playGame () {
             let win = false;
             countX = 0;
             countO = 0;
-            
-            for (i=0; i<3; i++){
-                if(xoArray[i] == ['X','X','X'] || xoArray[i] == ['O','O','O']){
+            if(xoArray[1][1] == 'X'){
+                if(xoArray[0][0] == 'X' && xoArray[2][2] == 'X') {
                     win = true;
-                    break;
+                }
+                else if (xoArray[0][2] == 'X' && xoArray[2,0] == 'X'){
+                    win = true;
                 }
             }
+            else if(xoArray[1][1] == 'O'){
+                    if(xoArray[0][0] == 'O' && xoArray[2][2] == 'O') {
+                        win = true;
+                    }
+                    else if (xoArray[0][2] == 'O' && xoArray[2,0] == 'O'){
+                        win = true;
+                    }
+            }
+            else {
+                for (i=0; i<3; i++){
+                    let column = [xoArray[0][i], xoArray[1][i], xoArray[2][i]];
+
+                    if(xoArray[i].toString() == ['X','X','X'].toString() || xoArray[i].toString() == ['O','O','O'].toString()){
+                        win = true;
+                        break;
+                    }
+
+                    else if( column == ['X','X','X'].toString() || column == ['O','O','O'].toString())
+                    {
+                        win = true;
+                        break;
+                    }
+
+                }
+
+            }
+
 
 
             return win;
@@ -37,8 +65,7 @@ function playGame () {
     
     function createPlayer (name, xoSelect) {
         let playerNumber = xoSelect === 'X' ? 0 : 1;
-        let win = false;
-        return {name, xoSelect, playerNumber, win};
+        return {name, xoSelect, playerNumber};
     }
 
     
@@ -54,35 +81,34 @@ function playGame () {
         }
 
         const finishGame = () => {
+            console.log('Game Finish');
             winGame = true;
         }
         return {score, round, winGame, winRound, finishGame};
     }();
 
     let player1Name = window.prompt('Enter your Name:');
-    let player1XO = window.prompt('Enter X/O :');
+    let player1XO = 'X';
     let player2Name = window.prompt('Enter your Name:');
-    let player2XO = window.prompt('Enter X/O :');
+    let player2XO = 'O';
     let playerTurn = 0;
 
    let player1 = createPlayer(player1Name, player1XO);
    let player2 = createPlayer(player2Name, player2XO);
 
-    while(!game.winGame) {
+   /* while(!game.winGame) {
         playerTurn++;
-        let positionI = Number(window.prompt('Enter your X position:'));
-        let positionJ = Number(window.prompt('Enter your Y position:'));
+        let position = Number(window.prompt('Enter your X position:').split(',')));
         let currentPlayer = playerTurn%2 == 0 ? player2 : player1;
 
-        gameboard.setXO([positionI, positionJ], currentPlayer);
+        gameboard.setXO([position[0], position[1]], currentPlayer);
 
         if(gameboard.winCheck()) {
             game.winRound(currentPlayer);
             game.finishGame();
         }
-    }
+    } */
     
-    gameboard.displayGameboard();
 }
 
 playGame();
