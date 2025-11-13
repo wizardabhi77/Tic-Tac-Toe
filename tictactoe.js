@@ -49,8 +49,12 @@ function playGame () {
             let [row, column]  = currentPosition;
             xoArray[row][column] = xoInput;
             console.log(xoArray);
+            if(playerTurn >= 9)
+            {
+                game.finishGame();
+            }
+            else if(playerTurn >= 5 && winCheck()) {
             
-            if(winCheck()) {
                 console.log('You Win! STOP');
                 game.winRound(currPlayer);
             }
@@ -136,8 +140,8 @@ function playGame () {
 
             let player1Score = document.querySelector('.onescore');
             let player2Score = document.querySelector('.twoscore');
-            player1Score.innerHTML = `<em>${player1.name}</em><br><p>X<p><br>SCORE:${score[0]}`;
-            player2Score.innerHTML = `<em>${player2.name}</em><br><p>O<p><br>SCORE:${score[1]}`;
+            player1Score.innerHTML = `<em>${player1.name}</em><br><img src="./Assets/skull-scan.svg"><br>SCORE:${score[0]}`;
+            player2Score.innerHTML = `<em>${player2.name}</em><br><img src="./Assets/heart-circle-outline.svg"><br>SCORE:${score[1]}`;
         }
 
 
@@ -148,6 +152,7 @@ function playGame () {
             scoreBoard();
             gameboard.tiles.forEach((tile) => tile.replaceChildren());
             gameboard.xoArray = [[null,null,null],[null,null,null],[null,null,null]];
+            playerTurn = 1;
             if(score[0] >= 5 || score[1] >= 5){
                 finishGame();
             }
@@ -156,6 +161,8 @@ function playGame () {
         const finishGame = () => {
             console.log('Game Finish');
             gameboard.tiles.forEach((tile) => tile.innerHTML = 'GAME FINISH');
+            let restartButton = document.createElement('button');
+            document.querySelector('.scoreboard').appendChild(restartButton);
             winGame = true;
         }
         return {score, round, winGame, scoreBoard, winRound, finishGame};
